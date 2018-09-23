@@ -65,3 +65,4 @@ typings/
 
 # Serverless directories
 .serverless
+.vscode/launch.json

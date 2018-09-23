@@ -4,11 +4,11 @@ require('dotenv').config();
 
 /* Configure the Twitter API */
 const Bot = new Twit({
-  consumer_key:         process.env.CONSUMER_KEY,
-  consumer_secret:      process.env.CONSUMER_SECRET,
-  access_token:         process.env.ACCESS_TOKEN,
-  access_token_secret:  process.env.ACCESS_TOKEN_SECRET,
-  timeout_ms:           60 * 1000,
+	consumer_key: process.env.CONSUMER_KEY,
+	consumer_secret: process.env.CONSUMER_SECRET,
+	access_token: process.env.ACCESS_TOKEN,
+	access_token_secret: process.env.ACCESS_TOKEN_SECRET,
+	timeout_ms: 60 * 1000,
 });
 
 var TWITTER_SEARCH_PHRASE = '#100diasdecodigo';
@@ -20,41 +20,38 @@ function BotInit() {
 	BotRetweet();
 }
 
-/* BotRetweet() : To retweet the matching recent tweet */
+/* BotRetweet() : To retweet recent tweets with our query */
 function BotRetweet() {
+	const stream = Bot.stream('statuses/filter', {
+		track: TWITTER_SEARCH_PHRASE
+	});
 
-	var query = {
-		q: TWITTER_SEARCH_PHRASE,
-		result_type: "recent"
-	}
-
-	Bot.get('search/tweets', query, BotGotLatestTweet);
-
-	function BotGotLatestTweet (error, data, response) {
-		if (error) {
-			console.log('Bot could not find latest tweet, : ' + error);
-		}
-		else {
-			var id = {
-				id : data.statuses[0].id_str
-			}
-
-			Bot.post('statuses/retweet/:id', id, BotRetweeted);
-			
-			function BotRetweeted(error, response) {
+	stream.on('tweet', tweet => {
+		if(isReply(tweet)) {
+			console.warn('Tweet is a retweet!');
+		} else {
+			Bot.post('statuses/retweet/:id', {
+				id: tweet.id_str
+			}, (error, response) => {
 				if (error) {
 					console.log('Bot could not retweet, : ' + error);
+				} else {
+					console.log('Bot retweeted : ' + response.text);
 				}
-				else {
-					console.log('Bot retweeted : ' + id.id);
-				}
-			}
+			});
 		}
-	}
-}
+	});
+};
 
-/* Set an interval of 30 minutes (in microsecondes) */
-setInterval(BotRetweet, 30*60*1000);
+function isReply(tweet) {
+	if ( tweet.retweeted_status
+	  || tweet.in_reply_to_status_id
+	  || tweet.in_reply_to_status_id_str
+	  || tweet.in_reply_to_user_id
+	  || tweet.in_reply_to_user_id_str
+	  || tweet.in_reply_to_screen_name )
+	  return true
+  }
 
 /* Initiate the Bot */
 BotInit();

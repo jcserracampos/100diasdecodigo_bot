@@ -1,4 +1,4 @@
-var Twit = require('twit');
+import Twit from 'twit';
 
 require('dotenv').config();
 

@@ -1,4 +1,4 @@
-import Twit from 'twit';
+const Twit = require('twit');
 
 require('dotenv').config();
 
@@ -55,3 +55,9 @@ function isReply(tweet) {
 
 /* Initiate the Bot */
 BotInit();
+
+// Exports
+module.exports.Bot = Bot;
+module.exports.BotInit = BotInit;
+module.exports.BotRetweet = BotRetweet;
+module.exports.isReply = isReply;

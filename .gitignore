@@ -66,3 +66,4 @@ typings/
 # Serverless directories
 .serverless
 .vscode/launch.json
+.DS_Store

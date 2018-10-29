@@ -1,5 +1,7 @@
 # 100diasdecodigo_bot
 
+[![CircleCI](https://circleci.com/gh/jcserracampos/100diasdecodigo_bot/tree/master.svg?style=svg)](https://circleci.com/gh/jcserracampos/100diasdecodigo_bot/tree/master)
+
 ## Como utilizar
 Primeiramente, crie uma nova aplicação em https://apps.twitter.com/.
 Depois de criada a aplicação, solicite um novo __access token__ para sua conta.

@@ -18,7 +18,8 @@ console.log('The bot is running...');
 /* BotRetweet() : To retweet recent tweets with our query */
 function BotRetweet() {
 	const stream = Bot.stream('statuses/filter', {
-		track: TWITTER_SEARCH_PHRASE
+		track: TWITTER_SEARCH_PHRASE,
+		language: 'pt'
 	});
 
 	stream.on('tweet', tweet => {

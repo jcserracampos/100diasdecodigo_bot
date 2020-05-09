@@ -1,6 +1,6 @@
 {
   "name": "100diasdecodigo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple bot to retweet #100diasdecódigo",
   "repository": "https://github.com/jcserracampos/100diasdecodigo_bot",
   "main": "index.js",
@@ -15,6 +15,6 @@
     "twit": "^2.2.10"
   },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^26.0.1"
   }
 }

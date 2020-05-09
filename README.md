@@ -8,9 +8,9 @@ Depois de criada a aplicação, solicite um novo __access token__ para sua conta
 
 Com essas informações, crie um arquivo `.env` na raiz do projeto com a seguinte formatação.
 
-    CONSUMER_KEY=         
-    CONSUMER_SECRET=      
-    ACCESS_TOKEN=         
+    CONSUMER_KEY=
+    CONSUMER_SECRET=
+    ACCESS_TOKEN=
     ACCESS_TOKEN_SECRET=
 
 As chaves inseridas devem ser as obtidas no passo anterior.
